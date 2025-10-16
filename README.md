@@ -22,7 +22,7 @@ cd [...]/ComfyUI/custom_nodes
 git clone https://github.com/chrisgoringe/cg-krita
 ```
 
-Restart ComfyUI
+Restart ComfyUI. In the python console you will hopefully see a message saying the Krita files have been installed.
 
 ## Usage
 
