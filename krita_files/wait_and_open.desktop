@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=Krita/PythonPlugin
+X-KDE-Library=wait_and_open
+X-Python-2-Compatible=false
+X-Krita-Manual=Manual.html
+Name=wait and open
+Comment=Replace this text with your description

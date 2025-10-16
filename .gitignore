@@ -179,3 +179,8 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+default.txt
+.gitignore
+krita_files/wait_and_open/log.txt
+.vscode/settings.json
+cg-krita.code-workspace

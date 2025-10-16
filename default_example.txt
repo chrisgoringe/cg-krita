@@ -1,0 +1,6 @@
+/Volumes/IUseAMac/this/is/the/path/krita/pykrita/wait_and_open
+
+To change the default directory: 
+- modify the first line in this file (it should end with wait_and_open)
+- rename it as 'default.txt'
+- restart Comfy
