@@ -40,7 +40,7 @@ will just pass the image through; if it contains anything at all, the node will 
 
 ## Problems?
 
-Try [here](docs/trouble.md) first. Then [report an issue](./issues)
+Try [here](docs/trouble.md) first. Then [report an issue](https://github.com/chrisgoringe/cg-krita/issues).
 
 ## Ideas?
 
