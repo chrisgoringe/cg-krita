@@ -8,24 +8,38 @@ from typing import Any
 from pathlib import Path
 import shutil
 
+# A time in seconds to wait between a file existing and reading it, to let the filesystem catch up
+# Can be modified in default.txt
 PAD_TIME = 0.25
 
-CN_DIR = Path(os.path.dirname(__file__))
+NODE_DIR = Path(os.path.dirname(__file__))
+PYKRITA_DIRECTORY = None
+DEFAULT_DIRECTORY = None
 
-if os.path.exists( defaults_file:=CN_DIR / "default.txt" ):
-    with open(defaults_file, 'r') as fh: 
-        DEFAULT_DIRECTORY = Path(fh.readline().strip())
-else:
+if os.path.exists( defaults_file:=NODE_DIR / "default.txt" ):
+    try:
+        with open(defaults_file, 'r') as fh: 
+            for line in fh.readlines():
+                if line.startswith('PYKRITA_DIRECTORY='):
+                    PYKRITA_DIRECTORY = Path(line.split('=')[1].strip()) / "wait_and_open"
+                if line.startswith('PAD_TIME='):
+                    PAD_TIME = float(line.split('=')[1].strip())
+    except Exception as e:
+        print(f"{e} encountered reading {defaults_file}")
+
+if not PYKRITA_DIRECTORY:
     APPDATA = Path(os.getenv('APPDATA') or "")
-    DEFAULT_DIRECTORY = APPDATA / "krita" / "pykrita" / "wait_and_open"
+    PYKRITA_DIRECTORY = APPDATA / "krita" / "pykrita"
+    
+DEFAULT_DIRECTORY = PYKRITA_DIRECTORY / "wait_and_open"
 
 if not os.path.exists(DEFAULT_DIRECTORY):
     PYKRITA_DIRECTORY = DEFAULT_DIRECTORY.parent
     if os.path.exists(PYKRITA_DIRECTORY) and PYKRITA_DIRECTORY.parts[-1]=='pykrita':
         print('''\033[91m ''' + f"\nEdit with Krita files not installed, but the pykrita directory appears to be at {PYKRITA_DIRECTORY}.\nWill try to install the files.")
         try:
-            shutil.copy(     CN_DIR / 'krita_files' / 'wait_and_open.desktop', PYKRITA_DIRECTORY / 'wait_and_open.desktop' ) 
-            shutil.copytree( CN_DIR / 'krita_files' / 'wait_and_open',         PYKRITA_DIRECTORY / 'wait_and_open' )
+            shutil.copy(     NODE_DIR / 'krita_files' / 'wait_and_open.desktop', PYKRITA_DIRECTORY / 'wait_and_open.desktop' ) 
+            shutil.copytree( NODE_DIR / 'krita_files' / 'wait_and_open',         PYKRITA_DIRECTORY / 'wait_and_open' )
             print(r"Edit with Krita files installed. You may need to restart Krita.")
         except Exception as e:
             print(r"Failed to install")

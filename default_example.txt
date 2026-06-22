@@ -1,5 +1,9 @@
-/Volumes/IUseAMac/this/is/the/path/krita/pykrita/wait_and_open
+#PYKRITA_DIRECTORY=/Volumes/IUseAMac/this/is/the/path/krita/pykrita/wait_and_open
+#PAD_TIME=0.25
 
+To change the default settings, modify this file and rename it `default.txt`
+
+PYKRITA_DIRECTORY probably ends `krita/pykrita`
 To change the default directory: 
 - modify the first line in this file (it should end with wait_and_open)
 - rename it as 'default.txt'

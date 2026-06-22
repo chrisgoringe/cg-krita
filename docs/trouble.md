@@ -22,11 +22,14 @@ To install manually:
 - In Krita, go to the `Settings` menu and select `Manage Resources`. Then click the `Open Resource Folder` button.
 - A file navigator window (or the equivalent in your OS) will open. In that folder, find the subfolder `pykrita`.
 - Copy the folder `wait_and_open` and the file `wait_and_open.desktop` (from the krita_files subdirectory) into the `pykrita` subfolder.
-- Make a note of the full path of the folder you just copied, ending `wait_and_open`
-- Create a file in the custom node directory (`custom_nodes\cg-krita`) called `default.txt`, the first line of which is the folder path you just found. 
-See default_example.txt for details.
+- In the custom node directory find (`default_example.txt`) and set PYKRITA_DIRECTORY to the `pykrita` directory full path, then rename that file to `default.txt`
 - Restart Krita 
   - If you look in the `wait_and_open` directory, you should now see a file called `log.txt` has been created
 - Restart Comfy
+
+# Timing issues
+
+On a slower hard drive, or for very large images, you might get issues when the wrong file appears, or the unmodified file is returned. 
+You can try to reduce these issues by setting `PAD_TIME` in `default.txt` (see `default_example.txt` for instructions)
 
 Still got problems? [Raise an issue](../issues)
